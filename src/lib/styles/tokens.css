@@ -1,0 +1,148 @@
+/* Generated from src/lib/design/tokens.json by scripts/build-tokens.ts. Do not edit. */
+
+:root {
+	color-scheme: light dark;
+
+	/* Palette swatches: the same in both themes. Use directly only in the Hero split and the mark. */
+	--paper: #FCFCFB;
+	--ash: #DEDAD3;
+	--stone: #5C5750;
+	--ink: #2A2724;
+	--char: #1A1817;
+	--ember: #BE4517;
+	--ember-deep: #A83D14;
+	--ember-glow: #F97A45;
+
+	/* Families */
+	--font-display: "General Sans", Inter, system-ui, sans-serif;
+	--font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+	/* Type styles */
+	--type-wordmark-family: var(--font-mono);
+	--type-wordmark-size: clamp(2rem, 8.4vw, 6rem);
+	--type-wordmark-line-height: 1;
+	--type-wordmark-weight: 800;
+	--type-wordmark-tracking: -0.04em;
+	--type-wordmark-small-family: var(--font-mono);
+	--type-wordmark-small-size: 17px;
+	--type-wordmark-small-line-height: 1.2;
+	--type-wordmark-small-weight: 800;
+	--type-wordmark-small-tracking: -0.03em;
+	--type-tagline-family: var(--font-display);
+	--type-tagline-size: clamp(1.15rem, 2.6vw, 1.75rem);
+	--type-tagline-line-height: 1.25;
+	--type-tagline-weight: 600;
+	--type-tagline-tracking: -0.01em;
+	--type-title-family: var(--font-display);
+	--type-title-size: clamp(1.6rem, 3.4vw, 2.25rem);
+	--type-title-line-height: 1.1;
+	--type-title-weight: 600;
+	--type-title-tracking: -0.02em;
+	--type-heading-family: var(--font-display);
+	--type-heading-size: 19px;
+	--type-heading-line-height: 1.3;
+	--type-heading-weight: 600;
+	--type-heading-tracking: -0.01em;
+	--type-body-family: var(--font-sans);
+	--type-body-size: 17px;
+	--type-body-line-height: 1.55;
+	--type-body-weight: 400;
+	--type-body-tracking: normal;
+	--type-body-small-family: var(--font-sans);
+	--type-body-small-size: 15px;
+	--type-body-small-line-height: 1.5;
+	--type-body-small-weight: 400;
+	--type-body-small-tracking: normal;
+	--type-meta-family: var(--font-sans);
+	--type-meta-size: 13px;
+	--type-meta-line-height: 1.4;
+	--type-meta-weight: 500;
+	--type-meta-tracking: normal;
+	--type-code-family: var(--font-mono);
+	--type-code-size: 14px;
+	--type-code-line-height: 1.7;
+	--type-code-weight: 400;
+	--type-code-tracking: normal;
+	--type-badge-family: var(--font-mono);
+	--type-badge-size: 12px;
+	--type-badge-line-height: 1.4;
+	--type-badge-weight: 500;
+	--type-badge-tracking: normal;
+
+	/* Spacing, radius, layout */
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 24px;
+	--space-6: 32px;
+	--space-7: 48px;
+	--space-8: 64px;
+	--space-9: 96px;
+	--radius-sm: 2px;
+	--radius-md: 3px;
+	--radius-full: 9999px;
+	--content-max: 1180px;
+	--gutter: clamp(1rem, 5vw, 4.5rem);
+	--heading-column: 15rem;
+	--measure: 62ch;
+	--band-padding: clamp(4rem, 9vw, 6rem);
+}
+
+/* Role tokens, light (the default). */
+:root,
+:root[data-theme='light'] {
+	--surface: var(--paper);
+	--surface-alt: #F4F4F2;
+	--surface-code: #F5F5F3;
+	--line: var(--ash);
+	--line-strong: #8F887F;
+	--text: var(--ink);
+	--text-muted: var(--stone);
+	--text-faint: #6E6860;
+	--accent: var(--ember);
+	--accent-hover: var(--ember-deep);
+	--on-accent: var(--paper);
+	--moss: #2F5B3A;
+	--dusk: #6A3D7C;
+	--claret: #8B2A3E;
+}
+
+/* Role tokens, dark: follows the system unless the visitor picked light. */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--surface: var(--char);
+		--surface-alt: #221F1D;
+		--surface-code: #121110;
+		--line: #2F2B28;
+		--line-strong: #716A63;
+		--text: var(--paper);
+		--text-muted: var(--ash);
+		--text-faint: #948D85;
+		--accent: var(--ember-glow);
+		--accent-hover: #FB9468;
+		--on-accent: var(--char);
+		--moss: #79BE8B;
+		--dusk: #C89BD6;
+		--claret: #CE7C92;
+	}
+}
+
+/* Role tokens, dark: the visitor's explicit choice. */
+:root[data-theme='dark'] {
+	--surface: var(--char);
+	--surface-alt: #221F1D;
+	--surface-code: #121110;
+	--line: #2F2B28;
+	--line-strong: #716A63;
+	--text: var(--paper);
+	--text-muted: var(--ash);
+	--text-faint: #948D85;
+	--accent: var(--ember-glow);
+	--accent-hover: #FB9468;
+	--on-accent: var(--char);
+	--moss: #79BE8B;
+	--dusk: #C89BD6;
+	--claret: #CE7C92;
+}

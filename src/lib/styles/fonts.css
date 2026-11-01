@@ -1,0 +1,15 @@
+/* Self-hosted fonts. Inter 400/500 (sans) and JetBrains Mono 400/500/800 (mono) from @fontsource. */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/800.css';
+
+/* General Sans 600 (display), from Fontshare, served from static/fonts. */
+@font-face {
+	font-family: 'General Sans';
+	src: url('/fonts/GeneralSans-Semibold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}

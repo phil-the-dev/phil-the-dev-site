@@ -1,0 +1,157 @@
+/*
+ * Ink & Ember: global styles.
+ * Tailwind's default palette, spacing, radii, shadows and fonts are removed so that
+ * utilities can only reach the design tokens. Colours are role tokens only.
+ */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@import './lib/styles/tokens.css';
+@import './lib/styles/fonts.css';
+
+@theme inline reference {
+	/* Colour: role tokens only. Palette swatches are deliberately absent. */
+	--color-*: initial;
+	--color-surface: var(--surface);
+	--color-surface-alt: var(--surface-alt);
+	--color-surface-code: var(--surface-code);
+	--color-line: var(--line);
+	--color-line-strong: var(--line-strong);
+	--color-text: var(--text);
+	--color-text-muted: var(--text-muted);
+	--color-text-faint: var(--text-faint);
+	--color-accent: var(--accent);
+	--color-accent-hover: var(--accent-hover);
+	--color-on-accent: var(--on-accent);
+	--color-moss: var(--moss);
+	--color-dusk: var(--dusk);
+	--color-claret: var(--claret);
+	--color-current: currentColor;
+	--color-transparent: transparent;
+
+	/* Families */
+	--font-*: initial;
+	--font-display: var(--font-display);
+	--font-sans: var(--font-sans);
+	--font-mono: var(--font-mono);
+
+	/* Type styles: text-<style> sets size, line height, weight and tracking. */
+	--text-*: initial;
+	--text-wordmark: var(--type-wordmark-size);
+	--text-wordmark--line-height: var(--type-wordmark-line-height);
+	--text-wordmark--font-weight: var(--type-wordmark-weight);
+	--text-wordmark--letter-spacing: var(--type-wordmark-tracking);
+	--text-wordmark-small: var(--type-wordmark-small-size);
+	--text-wordmark-small--line-height: var(--type-wordmark-small-line-height);
+	--text-wordmark-small--font-weight: var(--type-wordmark-small-weight);
+	--text-wordmark-small--letter-spacing: var(--type-wordmark-small-tracking);
+	--text-tagline: var(--type-tagline-size);
+	--text-tagline--line-height: var(--type-tagline-line-height);
+	--text-tagline--font-weight: var(--type-tagline-weight);
+	--text-tagline--letter-spacing: var(--type-tagline-tracking);
+	--text-title: var(--type-title-size);
+	--text-title--line-height: var(--type-title-line-height);
+	--text-title--font-weight: var(--type-title-weight);
+	--text-title--letter-spacing: var(--type-title-tracking);
+	--text-heading: var(--type-heading-size);
+	--text-heading--line-height: var(--type-heading-line-height);
+	--text-heading--font-weight: var(--type-heading-weight);
+	--text-heading--letter-spacing: var(--type-heading-tracking);
+	--text-body: var(--type-body-size);
+	--text-body--line-height: var(--type-body-line-height);
+	--text-body--font-weight: var(--type-body-weight);
+	--text-body-small: var(--type-body-small-size);
+	--text-body-small--line-height: var(--type-body-small-line-height);
+	--text-body-small--font-weight: var(--type-body-small-weight);
+	--text-meta: var(--type-meta-size);
+	--text-meta--line-height: var(--type-meta-line-height);
+	--text-meta--font-weight: var(--type-meta-weight);
+	--text-code: var(--type-code-size);
+	--text-code--line-height: var(--type-code-line-height);
+	--text-code--font-weight: var(--type-code-weight);
+	--text-badge: var(--type-badge-size);
+	--text-badge--line-height: var(--type-badge-line-height);
+	--text-badge--font-weight: var(--type-badge-weight);
+
+	/* Spacing: p-5 is space-5 (24px), and so on. No other steps exist. */
+	--spacing: initial;
+	--spacing-*: initial;
+	--spacing-1: var(--space-1);
+	--spacing-2: var(--space-2);
+	--spacing-3: var(--space-3);
+	--spacing-4: var(--space-4);
+	--spacing-5: var(--space-5);
+	--spacing-6: var(--space-6);
+	--spacing-7: var(--space-7);
+	--spacing-8: var(--space-8);
+	--spacing-9: var(--space-9);
+	--spacing-gutter: var(--gutter);
+	--spacing-band: var(--band-padding);
+
+	/* Widths */
+	--container-*: initial;
+	--container-content: var(--content-max);
+	--container-measure: var(--measure);
+
+	/* Radius: nearly square. */
+	--radius-*: initial;
+	--radius-sm: var(--radius-sm);
+	--radius-md: var(--radius-md);
+	--radius-full: var(--radius-full);
+
+	/* The system has no shadows. */
+	--shadow-*: initial;
+	--inset-shadow-*: initial;
+	--drop-shadow-*: initial;
+
+	/* Breakpoints from the component specs, used as max-* variants. */
+	--breakpoint-*: initial;
+	--breakpoint-about: 560px;
+	--breakpoint-cards: 640px;
+	--breakpoint-hero: 700px;
+	--breakpoint-band: 860px;
+}
+
+@layer base {
+	body {
+		margin: 0;
+		background: var(--surface);
+		color: var(--text);
+		font-family: var(--font-sans);
+		font-size: var(--type-body-size);
+		line-height: var(--type-body-line-height);
+		-webkit-font-smoothing: antialiased;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		text-wrap: balance;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			transition: none !important;
+			animation: none !important;
+		}
+	}
+}
+
+@layer components {
+	/* The one content wrapper. */
+	.wrap {
+		max-width: var(--content-max);
+		margin-inline: auto;
+		padding-inline: var(--gutter);
+	}
+}
