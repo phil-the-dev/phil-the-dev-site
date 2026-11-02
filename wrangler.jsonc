@@ -11,6 +11,9 @@
 		// Unknown paths get build/404.html with a 404 status.
 		"not_found_handling": "404-page"
 	},
+	// workers.dev Preview URLs for PR builds (turned on in the dashboard). Kept here so a
+	// deploy doesn't reset it; Cloudflare adds X-Robots-Tag: noindex to these URLs.
+	"preview_urls": true,
 	// Required by `wrangler preview`, which Workers Builds runs for non-production
 	// branches (PR previews). Empty: assets and compatibility settings stay top level.
 	"previews": {}
