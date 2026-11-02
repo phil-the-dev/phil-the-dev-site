@@ -2,6 +2,7 @@
 export type Link = { label: string; href: string };
 
 export const nav: Link[] = [
+	{ label: 'Home', href: '/' },
 	{ label: 'Work', href: '/#work' },
 	{ label: 'Writing', href: '/writing' },
 	{ label: 'About', href: '/#about' }

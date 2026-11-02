@@ -6,62 +6,10 @@
 	import Portrait from '#lib/components/Portrait.svelte';
 	import ProjectCard from '#lib/components/ProjectCard.svelte';
 	import TextLink from '#lib/components/TextLink.svelte';
-	import type { Status } from '#lib/components/Badge.svelte';
+	import { featuredProjects, projectLinkList } from '#lib/content.ts';
 	import { elsewhere, email, nav } from '#lib/site.ts';
 
-	type Project = {
-		title: string;
-		href: string;
-		description: string;
-		status: Status;
-		tags: string[];
-		links: { label: string; href: string }[];
-	};
-
-	// TODO: Phil's four projects. Statuses vary only to show each badge; replace with the real ones.
-	const projects: Project[] = [
-		{
-			title: 'TODO: project name',
-			href: '#',
-			description: 'TODO: one line on what it does and who it is for.',
-			status: 'maintained',
-			tags: ['TODO: tech', 'TODO: tech'],
-			links: [
-				{ label: 'Source', href: '#' },
-				{ label: 'Write-up', href: '#' }
-			]
-		},
-		{
-			title: 'TODO: project name',
-			href: '#',
-			description: 'TODO: one line on what it does and who it is for.',
-			status: 'experimental',
-			tags: ['TODO: tech'],
-			links: [{ label: 'Source', href: '#' }]
-		},
-		{
-			title: 'TODO: project name',
-			href: '#',
-			description: 'TODO: one line on what it does and who it is for.',
-			status: 'maintained',
-			tags: ['TODO: tech', 'TODO: tech', 'TODO: tech'],
-			links: [
-				{ label: 'Source', href: '#' },
-				{ label: 'Live', href: '#' }
-			]
-		},
-		{
-			title: 'TODO: project name',
-			href: '#',
-			description: 'TODO: one line on what it does and who it is for.',
-			status: 'archived',
-			tags: ['TODO: tech'],
-			links: [
-				{ label: 'Source', href: '#' },
-				{ label: 'Write-up', href: '#' }
-			]
-		}
-	];
+	const projects = featuredProjects();
 </script>
 
 <svelte:head>
@@ -88,8 +36,15 @@
 
 	<Band id="work" title="Selected work" alt>
 		<div class="grid grid-cols-2 gap-5 max-cards:grid-cols-1">
-			{#each projects as project, i (i)}
-				<ProjectCard {...project} />
+			{#each projects as project (project.slug)}
+				<ProjectCard
+					title={project.title}
+					href="/projects/{project.slug}"
+					description={project.description ?? ''}
+					status={project.status}
+					tags={project.tags}
+					links={projectLinkList(project)}
+				/>
 			{/each}
 		</div>
 	</Band>

@@ -9,6 +9,6 @@
 
 <a
 	{href}
-	class="text-accent underline decoration-1 underline-offset-[0.18em] hover:text-accent-hover hover:decoration-2 {className}"
+	class="text-link {className}"
 	{...rest}>{@render children()}</a
 >

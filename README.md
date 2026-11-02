@@ -21,7 +21,14 @@ Light is the default, and with no saved choice the site follows `prefers-color-s
 
 ## Content
 
-Sveltia CMS runs at `/admin` (`static/admin/config.yml`) and commits articles as Markdown to `src/content/articles`.
+Sveltia CMS runs at `/admin` (`static/admin/config.yml`). It commits Markdown files to:
+
+- `src/content/articles`, served at `/writing/<slug>`
+- `src/content/projects`, served at `/projects/<slug>`. Featured projects appear as the Selected work cards on Home, sorted by `order`.
+
+mdsvex compiles the Markdown, and `src/lib/content.ts` validates the front matter, so a bad file fails the build. Drafts appear in `pnpm dev` and are left out of production builds. Code fences are highlighted with Shiki at build time (`src/lib/markdown/highlight.ts`).
+
+The build writes `/projects/<slug>.html`, so the host needs to serve clean URLs (most static hosts do this by default).
 
 ## Assets you supply
 
