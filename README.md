@@ -19,7 +19,7 @@ The site is fully static: adapter-static prerenders it to `build/`. Unknown path
 **Workers (recommended).** `wrangler.jsonc` defines a Worker with static assets only and no script. Either:
 
 - run `pnpm exec wrangler login`, then `pnpm run deploy`, or
-- connect the repository in the Cloudflare dashboard (Workers & Pages → Create → Import a repository) with build command `pnpm build` and deploy command `pnpm exec wrangler deploy`.
+- connect the repository in the Cloudflare dashboard (Workers & Pages → Create → Import a repository) with build command `pnpm build` and deploy command `npx wrangler deploy`. The build command must be set, or `build/` will not exist when the deploy runs. Builds of other branches run `npx wrangler preview`, which needs the `previews` block in `wrangler.jsonc`.
 
 **Pages.** Connect the repository with framework preset *None*, build command `pnpm build` and output directory `build`. Or run `pnpm deploy:pages`.
 
