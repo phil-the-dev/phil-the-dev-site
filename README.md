@@ -54,5 +54,5 @@ The build writes `/projects/<slug>.html`, so the host needs to serve clean URLs 
 
 ## Assets you supply
 
-- `static/fonts/GeneralSans-Semibold.woff2` (Fontshare)
+- `static/fonts/GeneralSans-Semibold.woff2` (Fontshare, free licence): in place
 - `src/lib/design/shiki/ink-ember-light.json` and `ink-ember-dark.json`: the Ink & Ember VS Code themes, used as is by Shiki
