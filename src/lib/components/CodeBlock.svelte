@@ -12,6 +12,7 @@
 <div class="code-block" data-lang={lang}>
 	{#if html}
 		<!-- Shiki output, generated at build time from repository content. -->
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html html}
 	{:else}
 		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->

@@ -109,8 +109,6 @@
 	/* Breakpoints from the component specs, used as max-* variants. */
 	--breakpoint-*: initial;
 	--breakpoint-about: 560px;
-	--breakpoint-cards: 640px;
-	--breakpoint-hero: 700px;
 	--breakpoint-band: 860px;
 }
 
@@ -148,11 +146,18 @@
 }
 
 @layer components {
-	/* The one content wrapper. */
+	/* The one content wrapper (inner pages). */
 	.wrap {
 		max-width: var(--content-max);
 		margin-inline: auto;
 		padding-inline: var(--gutter);
+	}
+
+	/* The single centred column of the home page (D1) and the holding page. */
+	.column {
+		max-width: 720px;
+		margin-inline: auto;
+		padding-inline: clamp(1rem, 5vw, 2rem);
 	}
 
 	/* CodeBlock: used by the component and by code fences in Markdown. */

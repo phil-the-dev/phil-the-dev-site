@@ -6,11 +6,29 @@ Personal developer site, built with SvelteKit, TypeScript (strict), Tailwind 4 a
 
 - `pnpm dev`: regenerate tokens, start the dev server
 - `pnpm build`: regenerate tokens, prerender the static site to `build/`
-- `pnpm check`: svelte-check
+- `pnpm check`: svelte-check (types)
+- `pnpm lint`: ESLint (TypeScript and Svelte)
 - `pnpm tokens`: regenerate `src/lib/styles/tokens.css` from `src/lib/design/tokens.json`
 - `pnpm cf:dev`: build, then serve `build/` in the Cloudflare runtime at http://localhost:8787
 - `pnpm run deploy`: build and deploy to Cloudflare Workers (static assets)
 - `pnpm deploy:pages`: build and deploy to a Cloudflare Pages project called `phil-the-dev-site`
+
+## Under-construction holding page
+
+Set `UNDER_CONSTRUCTION=true` (or `1`) when building, and the site is just a holding page at `/`:
+
+- `/` shows the holding page: the masthead, two short paragraphs and the footer, with `<meta name="robots" content="noindex">`.
+- Every other path returns 404. Those routes aren't hidden; they aren't built. `vite.config.ts` points SvelteKit at `src/routes-holding/`, which holds only the holding page. No other page and nothing from `src/content` reaches the output or the JavaScript bundles.
+- `/admin` (Sveltia CMS) and the other files in `static/` are still served, so you can keep writing content.
+
+Unset or set to anything else, the full site builds from `src/routes/`.
+
+```sh
+UNDER_CONSTRUCTION=true pnpm build   # holding page only
+UNDER_CONSTRUCTION=true pnpm dev     # preview it locally
+```
+
+On Cloudflare it's a build variable, not a `wrangler.jsonc` setting: the site is static, so the flag is read while building, not at runtime. In the dashboard, go to Workers & Pages → phil-the-dev-site → Settings → Build → **Variables and secrets** and add `UNDER_CONSTRUCTION` = `true`. Build variables apply to every branch, so PR previews show the holding page too while it's set.
 
 ## Deploying to Cloudflare
 

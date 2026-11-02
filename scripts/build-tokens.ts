@@ -73,7 +73,7 @@ const css = `/* Generated from src/lib/design/tokens.json by scripts/build-token
 :root {
 	color-scheme: light dark;
 
-	/* Palette swatches: the same in both themes. Use directly only in the Hero split and the mark. */
+	/* Palette swatches: the same in both themes. Use directly only in the mark and the portrait backdrop. */
 ${palette.map((t) => decl(t.name, t.value)).join('\n')}
 
 	/* Families */

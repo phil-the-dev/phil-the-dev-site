@@ -137,12 +137,3 @@ export function articleBodyFor(slug: string): Component | undefined {
 export function projectBodyFor(slug: string): Component | undefined {
 	return projectModules[`/src/content/projects/${slug}.md`]?.default;
 }
-
-/** Card links in the order the ProjectCard spec lists them. */
-export function projectLinkList(p: Project): { label: string; href: string }[] {
-	const out: { label: string; href: string }[] = [];
-	if (p.links.source) out.push({ label: 'Source', href: p.links.source });
-	if (p.links.writeup) out.push({ label: 'Write-up', href: p.links.writeup });
-	if (p.links.live) out.push({ label: 'Live', href: p.links.live });
-	return out;
-}

@@ -6,7 +6,7 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
 	import type { Entry, Project } from '#lib/content.ts';
-	import { elsewhere, nav } from '#lib/site.ts';
+	import { elsewhere, innerNav } from '#lib/site.ts';
 	import Badge from './Badge.svelte';
 	import Band from './Band.svelte';
 	import Footer from './Footer.svelte';
@@ -23,7 +23,7 @@
 	{#if entry.description}<meta name="description" content={entry.description} />{/if}
 </svelte:head>
 
-<Header {nav} />
+<Header nav={innerNav} />
 
 <main>
 	<Band id="entry" title={entry.title} level={1}>

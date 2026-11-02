@@ -1,15 +1,21 @@
+<!--
+	Home (D1, "index"): one centred column with the nav, the masthead, an intro,
+	a list of work, the latest writing and the footer. Role tokens only.
+-->
 <script lang="ts">
-	import Band from '#lib/components/Band.svelte';
-	import Footer from '#lib/components/Footer.svelte';
-	import Header from '#lib/components/Header.svelte';
-	import Hero from '#lib/components/Hero.svelte';
-	import Portrait from '#lib/components/Portrait.svelte';
-	import ProjectCard from '#lib/components/ProjectCard.svelte';
+	import Badge from '#lib/components/Badge.svelte';
+	import HomeNav from '#lib/components/HomeNav.svelte';
+	import Masthead from '#lib/components/Masthead.svelte';
+	import SiteFooter from '#lib/components/SiteFooter.svelte';
 	import TextLink from '#lib/components/TextLink.svelte';
-	import { featuredProjects, projectLinkList } from '#lib/content.ts';
-	import { elsewhere, email, nav } from '#lib/site.ts';
+	import { articles, featuredProjects } from '#lib/content.ts';
+	import { elsewhere, nav } from '#lib/site.ts';
 
 	const projects = featuredProjects();
+	const posts = articles().slice(0, 5);
+	const placeholderPosts = 3;
+
+	const rowLink = 'text-text no-underline underline-offset-[0.18em] hover:underline';
 </script>
 
 <svelte:head>
@@ -17,46 +23,58 @@
 	<meta name="description" content="TODO: one-sentence site description." />
 </svelte:head>
 
-<Header {nav} />
+<div class="bg-surface text-text">
+	<div class="column">
+		<HomeNav {nav} />
 
-<main>
-	<Hero />
+		<main>
+			<Masthead class="mt-[72px]" />
 
-	<Band id="about" title="About">
-		<div class="grid grid-cols-[160px_minmax(0,1fr)] items-start gap-5 max-about:grid-cols-1">
-			<Portrait />
-			<div>
-				<p class="mt-0 mb-4 max-w-measure">
-					TODO: bio, in Phil's words. Two short paragraphs with real project names and numbers.
-				</p>
-				<p class="m-0 max-w-measure">TODO: second paragraph.</p>
-			</div>
-		</div>
-	</Band>
+			<p class="mt-6 mb-0 max-w-[58ch] text-[18px] leading-[1.6]">
+				Hi, I'm Phil. TODO: two sentences in your words, with one specific thing you build and one
+				you keep running.
+			</p>
 
-	<Band id="work" title="Selected work" alt>
-		<div class="grid grid-cols-2 gap-5 max-cards:grid-cols-1">
-			{#each projects as project (project.slug)}
-				<ProjectCard
-					title={project.title}
-					href="/projects/{project.slug}"
-					description={project.description ?? ''}
-					status={project.status}
-					tags={project.tags}
-					links={projectLinkList(project)}
-				/>
-			{/each}
-		</div>
-	</Band>
+			<section id="work" aria-labelledby="work-title" class="mt-[72px]">
+				<h2 id="work-title" class="m-0 font-display text-heading">Work</h2>
+				<ul class="mt-3 mb-0 list-none p-0">
+					{#each projects as project (project.slug)}
+						<li class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-t border-line py-[14px]">
+							<a href="/projects/{project.slug}" class="flex-[1_1_260px] font-medium {rowLink}"
+								>{project.title}</a
+							>
+							<p class="m-0 flex-[999_1_200px] text-body-small text-text-muted">
+								{project.description ?? ''}
+							</p>
+							<span class="flex-none"><Badge status={project.status} /></span>
+						</li>
+					{/each}
+				</ul>
+			</section>
 
-	<Band id="elsewhere" title="Elsewhere">
-		<ul class="m-0 flex list-none flex-wrap gap-4 p-0">
-			{#each elsewhere as link (link.label)}
-				<li><TextLink href={link.href}>{link.label}</TextLink></li>
-			{/each}
-		</ul>
-		<p class="mt-4 mb-0 text-text-muted">{email}</p>
-	</Band>
-</main>
+			<section id="writing" aria-labelledby="writing-title" class="mt-[56px]">
+				<h2 id="writing-title" class="m-0 font-display text-heading">Writing</h2>
+				<ul class="mt-3 mb-0 list-none p-0">
+					{#each posts as post (post.slug)}
+						<li class="flex items-baseline border-t border-line py-[10px]">
+							<time datetime={post.date} class="w-[96px] flex-none text-meta text-text-faint"
+								>{post.date}</time
+							>
+							<a href="/writing/{post.slug}" class="min-w-0 {rowLink}">{post.title}</a>
+						</li>
+					{:else}
+						{#each { length: placeholderPosts }, i (i)}
+							<li class="flex items-baseline border-t border-line py-[10px]">
+								<span class="w-[96px] flex-none text-meta text-text-faint">TODO: date</span>
+								<span class="min-w-0">TODO: post title</span>
+							</li>
+						{/each}
+					{/each}
+				</ul>
+				<p class="mt-4 mb-0"><TextLink href="/writing">All writing</TextLink></p>
+			</section>
+		</main>
 
-<Footer links={elsewhere} />
+		<SiteFooter links={elsewhere} class="mt-[72px]" />
+	</div>
+</div>
