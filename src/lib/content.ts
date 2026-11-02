@@ -105,21 +105,26 @@ function toProject(path: string, meta: Meta, raw: string): Project {
 	};
 }
 
-/** Drafts are visible in dev and left out of production builds. */
-const published = (e: Entry) => import.meta.env.DEV || !e.draft;
+/**
+ * Drafts are visible in dev and left out of production builds. In a build, the
+ * drop-drafts Vite plugin (src/lib/markdown/drafts.ts) has already replaced each draft
+ * with a stub holding only `draft: true`, so drafts are skipped before validation.
+ */
+const published = ([, mod]: [string, MdModule]) =>
+	import.meta.env.DEV || mod.metadata?.draft !== true;
 const newestFirst = (a: Entry, b: Entry) => b.date.localeCompare(a.date);
 
 export function articles(): Entry[] {
 	return Object.entries(articleModules)
-		.map(([path, mod]) => toEntry(path, mod.metadata ?? {}, articleRaw[path]))
 		.filter(published)
+		.map(([path, mod]) => toEntry(path, mod.metadata ?? {}, articleRaw[path]))
 		.sort(newestFirst);
 }
 
 export function projects(): Project[] {
 	return Object.entries(projectModules)
-		.map(([path, mod]) => toProject(path, mod.metadata ?? {}, projectRaw[path]))
 		.filter(published)
+		.map(([path, mod]) => toProject(path, mod.metadata ?? {}, projectRaw[path]))
 		.sort(newestFirst);
 }
 

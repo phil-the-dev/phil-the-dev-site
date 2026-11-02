@@ -3,6 +3,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { mdsvex } from 'mdsvex';
 import { defineConfig } from 'vite';
+import { dropDrafts } from './src/lib/markdown/drafts.ts';
 import { highlight } from './src/lib/markdown/highlight.ts';
 
 /**
@@ -17,6 +18,7 @@ if (underConstruction) console.log('UNDER_CONSTRUCTION is on: building the holdi
 
 export default defineConfig({
 	plugins: [
+		dropDrafts(),
 		tailwindcss(),
 		sveltekit({
 			extensions: ['.svelte', '.md'],
