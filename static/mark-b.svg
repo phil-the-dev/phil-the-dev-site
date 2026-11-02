@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="phil-the-dev mark">
+  <rect width="120" height="120" fill="#1A1817"></rect>
+  <g fill="#FCFCFB">
+    <rect x="18" y="25" width="11" height="71"></rect>
+    <path d="M44 26a26 26 0 1 1 0 52 26 26 0 0 1 0-52zm0 11a15 15 0 1 0 0 30 15 15 0 0 0 0-30z"></path>
+  </g>
+  <rect x="78" y="46" width="24" height="11" fill="#F97A45"></rect>
+</svg>

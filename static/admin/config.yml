@@ -1,0 +1,58 @@
+# Sveltia CMS: article management. Articles are Markdown files committed to this repo.
+backend:
+  name: github
+  repo: phil-the-dev/phil-the-dev-site
+  branch: main
+  # Signing in: Sveltia CMS accepts a GitHub personal access token as is. For GitHub
+  # OAuth sign-in, deploy the sveltia-cms-auth Worker to Cloudflare and set its URL here:
+  # base_url: https://sveltia-cms-auth.<your-subdomain>.workers.dev
+
+media_folder: static/images/articles
+public_folder: /images/articles
+
+collections:
+  - name: articles
+    label: Articles
+    label_singular: Article
+    folder: src/content/articles
+    create: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}} · {{date}}'
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, time_format: false, date_format: YYYY-MM-DD, format: YYYY-MM-DD }
+      - { name: description, label: Description, widget: text, required: false }
+      - { name: draft, label: Draft, widget: boolean, default: true }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/content/projects
+    create: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}} · {{status}}'
+    sortable_fields: [order, date, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, time_format: false, date_format: YYYY-MM-DD, format: YYYY-MM-DD }
+      - { name: description, label: One-line description, widget: string, hint: 'What it does and who it is for. Shown on the card.' }
+      - { name: status, label: Status, widget: select, options: [maintained, experimental, archived] }
+      - { name: tags, label: Tech tags, widget: list, max: 3, required: false }
+      - name: links
+        label: Links
+        widget: object
+        required: false
+        fields:
+          - { name: source, label: Source, widget: string, required: false }
+          - { name: writeup, label: Write-up, widget: string, required: false }
+          - { name: live, label: Live, widget: string, required: false }
+      - { name: featured, label: Show on Home, widget: boolean, default: false, hint: 'Home shows the featured projects as cards. Keep the number even.' }
+      - { name: order, label: Order on Home, widget: number, value_type: int, default: 0, required: false }
+      - { name: draft, label: Draft, widget: boolean, default: true }
+      - { name: body, label: Write-up, widget: markdown }

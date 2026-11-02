@@ -1,0 +1,53 @@
+{
+	"name": "phil-the-dev-site",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"packageManager": "pnpm@10.28.0",
+	"engines": {
+		"node": ">=22.18"
+	},
+	"scripts": {
+		"tokens": "node scripts/build-tokens.ts",
+		"predev": "pnpm tokens",
+		"prebuild": "pnpm tokens",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"cf:dev": "pnpm build && wrangler dev",
+		"deploy": "pnpm build && wrangler deploy",
+		"deploy:pages": "pnpm build && wrangler pages deploy build --project-name phil-the-dev-site",
+		"lint": "eslint ."
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@sveltejs/adapter-static": "^4.0.1",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/node": "^22.20.5",
+		"eslint": "^10.14.0",
+		"eslint-plugin-svelte": "^3.23.1",
+		"globals": "^17.14.0",
+		"mdsvex": "^0.12.8",
+		"shiki": "^4.5.0",
+		"svelte": "^5.57.2",
+		"svelte-check": "^4.6.0",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.72.1",
+		"vite": "^8.3.0",
+		"wrangler": "4.151.1"
+	},
+	"dependencies": {
+		"@fontsource/inter": "^5.3.0",
+		"@fontsource/jetbrains-mono": "^5.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
+	}
+}
