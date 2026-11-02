@@ -3,6 +3,9 @@ backend:
   name: github
   repo: phil-the-dev/phil-the-dev-site
   branch: main
+  # Signing in: Sveltia CMS accepts a GitHub personal access token as is. For GitHub
+  # OAuth sign-in, deploy the sveltia-cms-auth Worker to Cloudflare and set its URL here:
+  # base_url: https://sveltia-cms-auth.<your-subdomain>.workers.dev
 
 media_folder: static/images/articles
 public_folder: /images/articles

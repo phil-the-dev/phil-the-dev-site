@@ -1,0 +1,14 @@
+// Cloudflare Workers, static assets only (no Worker script).
+// Deploy with `pnpm run deploy`; preview the production build locally with `pnpm run cf:dev`.
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "phil-the-dev-site",
+	"compatibility_date": "2026-10-15",
+	"assets": {
+		"directory": "./build",
+		// SvelteKit writes /projects/foo.html; this serves it at /projects/foo.
+		"html_handling": "auto-trailing-slash",
+		// Unknown paths get build/404.html with a 404 status.
+		"not_found_handling": "404-page"
+	}
+}

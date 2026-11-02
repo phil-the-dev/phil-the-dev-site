@@ -175,14 +175,23 @@
 	/* Shiki dual themes (defaultColor: false): each token carries --shiki-light and --shiki-dark. */
 	.code-block .shiki span {
 		color: var(--shiki-light);
+		font-style: var(--shiki-light-font-style, inherit);
+		font-weight: var(--shiki-light-font-weight, inherit);
+		text-decoration: var(--shiki-light-text-decoration, inherit);
 	}
 	@media (prefers-color-scheme: dark) {
 		:root:not([data-theme='light']) .code-block .shiki span {
 			color: var(--shiki-dark);
+			font-style: var(--shiki-dark-font-style, inherit);
+			font-weight: var(--shiki-dark-font-weight, inherit);
+			text-decoration: var(--shiki-dark-text-decoration, inherit);
 		}
 	}
 	:root[data-theme='dark'] .code-block .shiki span {
 		color: var(--shiki-dark);
+		font-style: var(--shiki-dark-font-style, inherit);
+		font-weight: var(--shiki-dark-font-weight, inherit);
+		text-decoration: var(--shiki-dark-text-decoration, inherit);
 	}
 
 	/* Inline code. */

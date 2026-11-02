@@ -18,7 +18,8 @@ export default defineConfig({
 						? undefined
 						: true
 			},
-			adapter: adapter({ strict: true }),
+			// fallback: 404.html is served by Cloudflare for unknown paths (wrangler.jsonc).
+			adapter: adapter({ strict: true, fallback: '404.html' }),
 			prerender: {
 				// /writing is linked from the nav but not built yet (see pages.md).
 				handleHttpError: ({ path, message }) => {

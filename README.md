@@ -8,6 +8,28 @@ Personal developer site, built with SvelteKit, TypeScript (strict), Tailwind 4 a
 - `pnpm build`: regenerate tokens, prerender the static site to `build/`
 - `pnpm check`: svelte-check
 - `pnpm tokens`: regenerate `src/lib/styles/tokens.css` from `src/lib/design/tokens.json`
+- `pnpm cf:dev`: build, then serve `build/` in the Cloudflare runtime at http://localhost:8787
+- `pnpm run deploy`: build and deploy to Cloudflare Workers (static assets)
+- `pnpm deploy:pages`: build and deploy to a Cloudflare Pages project called `phil-the-dev-site`
+
+## Deploying to Cloudflare
+
+The site is fully static: adapter-static prerenders it to `build/`. Unknown paths get `404.html` with a 404 status.
+
+**Workers (recommended).** `wrangler.jsonc` defines a Worker with static assets only and no script. Either:
+
+- run `pnpm exec wrangler login`, then `pnpm run deploy`, or
+- connect the repository in the Cloudflare dashboard (Workers & Pages → Create → Import a repository) with build command `pnpm build` and deploy command `pnpm exec wrangler deploy`.
+
+**Pages.** Connect the repository with framework preset *None*, build command `pnpm build` and output directory `build`. Or run `pnpm deploy:pages`.
+
+Both read:
+
+- `.node-version` (Node 22; the token script needs Node 22.18 or newer)
+- the `packageManager` field (pnpm)
+- `static/_headers`, which sets long caching on hashed assets, `nosniff`, and `noindex` on `/admin`
+
+**CMS sign-in on Cloudflare.** Sveltia CMS at `/admin` signs in to GitHub with a personal access token as is. For GitHub OAuth sign-in, deploy the `sveltia-cms-auth` Worker and set `base_url` in `static/admin/config.yml`.
 
 ## Design tokens
 
@@ -33,4 +55,4 @@ The build writes `/projects/<slug>.html`, so the host needs to serve clean URLs 
 ## Assets you supply
 
 - `static/fonts/GeneralSans-Semibold.woff2` (Fontshare)
-- `src/lib/design/shiki/ink-ember-light.json` and `ink-ember-dark.json` (VS Code theme)
+- `src/lib/design/shiki/ink-ember-light.json` and `ink-ember-dark.json`: the Ink & Ember VS Code themes, used as is by Shiki
